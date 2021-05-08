@@ -1,0 +1,171 @@
+{% extends "homepage.html" %}
+{% load static %}
+
+
+
+{% block content %}
+<!--  end page loader  -->
+<!-- start header  -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-8">
+                <div class="logo">
+                    <h1 class="text-nowrap mt-4">DATA PLAYER</h1>
+                </div>
+            </div>
+            <div class="col-md-9 col-4">
+                <div class="back_to_home">
+                    <a href="/"><i class="ion-android-arrow-back"></i> Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- end header  -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <!-- start work wrapper -->
+
+            <div id="works" class="work_wrapper work_wrapper_page">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <!-- section title -->
+                        <div class="text-center">
+                            <h2 class="section_title">All Works</h2>
+                        </div>
+
+                        <!-- work filter start -->
+                        <div class="row no-gutters">
+                            <div class="col-12">
+                                <div class="filter-buttons">
+                                    <button class="active"  data-filter="*">All</button>
+                                    {% if job %}
+                                    <button  data-filter=".jobs">Jobs</button>
+                                    {% else %}
+                                    {% endif %}
+                                    {% if intern %}
+                                    <button data-filter=".intern">Internships</button>
+                                    {% else %}
+                                    {% endif %}
+                                    {% if pro %}
+                                    <button  data-filter=".projects">Projects</button>
+                                    {% else %}
+                                    {% endif %}
+                                    {% if cer %}
+                                    <button data-filter=".certificates">Certificates</button>
+                                    {% else %}
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- work filter end -->
+
+                        <div class="row works">
+                            {% if job %}
+                            {% for j in job %}
+                            {% if j.is_show7 == True %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 jobs">
+                                <div class="work_single_item">
+                                    <img class="img-fluid" src="/media/{{ j.c_img2 }}" alt="">
+                                    <div class="work_info">
+                                        <h6>{{ j.post1 }}</h6>
+
+                                        {% if j.is_working1 == False %}
+                                        <p>{{ j.start_date2 }}-{{ j.end_date2 }}</p>
+                                        {% else %}
+                                        <p>Current </p>
+                                        {% endif %}
+                                        <a class="ajax-popup-link" href="/job/{{ j.id }}/"><span class="ion-android-expand"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% else %}
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            {% endif %}
+                            <!-- work single item  -->
+                            {% if intern %}
+                            {% for i in intern %}
+                            {% if i.is_show6 == True %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 intern">
+                                <div class="work_single_item">
+                                    <img class="img-fluid" src="/media/{{ i.c_img1 }}" alt="">
+                                    <div class="work_info">
+                                        <h6>{{ i.post }}</h6>
+
+                                        {% if i.is_working == False %}
+                                        <p>{{ i.start_date1}}-{{ i.end_date1 }}</p>
+                                        {% else %}
+                                        <p>Current</p>
+                                        {% endif %}
+                                        <a class="ajax-popup-link" href="/intern/{{ i.id }}/"><span class="ion-android-expand"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% else %}
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            {% endif %}
+                            <!-- work single item  -->
+                            {% if pro %}
+                            {% for  p in pro %}
+                            {% if p.is_show4 == True %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 projects">
+                                <div class="work_single_item">
+                                    <img class="img-fluid" src="/media/{{ p.img7 }}" alt="">
+                                    <div class="work_info">
+                                        <h6>{{ p.project_name }}</h6>
+                                        {% if p.is_upcoming == True %}
+                                        <p>Upcoming</p>
+                                        {% elif p.is_work == True %}
+                                        <p>Working</p>
+                                        {% else %}
+                                        <p>{{ p.start_date}}-{{ p.end_date}}</p>
+                                        {% endif %}
+                                        <a class="ajax-popup-link" href="/proj/{{ p.id }}/"><span class="ion-android-expand"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            {% endif %}
+
+                            <!-- work single item  -->
+                            {% if cer %}
+                            {% for c in cer %}
+                            {% if c.is_show2 == True %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 certificates">
+                                <div class="work_single_item">
+                                    <img class="img-fluid" src="/media/{{ c.img3 }}" alt="">
+                                    <div class="work_info">
+                                        <h6>{{ c.certificate_name }}</h6>
+                                        <p>{{ c.certificate_from }}</p>
+
+                                        <a class="ajax-popup-link" href="/cert/{{ c.id }}"><span class="ion-android-expand"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end work wrapper -->
+            <!-- start footer wrapper -->
+            {% endblock %}
